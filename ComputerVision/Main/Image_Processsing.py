@@ -3,22 +3,14 @@ import numpy as np
 import time
 import os
 import threading as MT
-from LineFollowFinal import LineFollow
 #import tensorflow as tf
 from ModelTest import ObjectDetection
 
-import RPi.GPIO as GPIO
 #greenMask = []
 #blueMask = []
 #redMask = []
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-GPIO.setup(14,GPIO.OUT)
-GPIO.setup(15,GPIO.OUT)
-GPIO.setup(18,GPIO.OUT)
-GPIO.setup(23,GPIO.OUT)
 
 
 class ImageProcessing(object):
@@ -222,8 +214,6 @@ class ImageProcessing(object):
                 
                 if self.frmaeno == 3:
                     #Sees what stream is used for the line detection to follow
-                    lf = LineFollow(self.frame) 
-                    self.frame = lf.VisualizeLine()
                     self.measure_temp()
 
                 else:
@@ -243,16 +233,6 @@ class ImageProcessing(object):
                 #cv2.imshow("Red Image Mask",redMask)
 
                 #Pressing of the ESC key will close the application
-                if cv2.waitKey(1)==27:
-                    GPIO.output(18, GPIO.LOW)
-                    GPIO.output(14, GPIO.LOW)
-                    GPIO.output(15, GPIO.LOW)
-                    GPIO.output(23, GPIO.LOW)
-                    GPIO.output(24, GPIO.LOW)
-                    GPIO.output(25, GPIO.LOW)
-                    GPIO.output(8, GPIO.LOW)
-                    
-                    break
             cv2.destroyAllWindows()
             cap.release()
         except:

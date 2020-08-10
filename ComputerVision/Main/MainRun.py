@@ -2,15 +2,8 @@ from Image_Processsing import ImageProcessing
 import cv2
 import threading as MT
 import time
-import RPi.GPIO as GPIO
 
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
-GPIO.setup(16,GPIO.OUT)
-GPIO.setup(20,GPIO.OUT)
-GPIO.setup(21,GPIO.OUT)
 #import tensorflow as tf
 try:
     #Loads in the saved model.
@@ -34,23 +27,20 @@ try:
     print("Creating Threads")
     t1 = MT.Thread(target=process1.startStream)
     t1.start()
-    GPIO.output(16, GPIO.HIGH)
     time.sleep(10)
     t2 = MT.Thread(target=process2.startStream)
     t2.start()
-    GPIO.output(20, GPIO.HIGH)
     time.sleep(10)
     t3 = MT.Thread(target=process3.startStream)
     t3.start()
-    GPIO.output(21, GPIO.HIGH)
 
     #Joinging of the threads when they are finished executing so that they can safely close.
     t1.join()
-    GPIO.output(16, GPIO.LOW)
+
     t2.join()
-    GPIO.output(20, GPIO.LOW)
+
     t3.join()
-    GPIO.output(21, GPIO.LOW)
+
 
     print("Application Terminated")
     #closing all open windows
