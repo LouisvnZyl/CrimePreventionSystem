@@ -3,14 +3,7 @@ import numpy as np
 import time
 import os
 import threading as MT
-#import tensorflow as tf
-
-#greenMask = []
-#blueMask = []
-#redMask = []
-
-
-
+import Logger.logger as AppLogger
 
 class ImageProcessing(object):
     
@@ -25,7 +18,7 @@ class ImageProcessing(object):
     def startStream(self):
         try:
             cap = self.video
-
+            AppLogger.ApplicationLogger.logInfo()
             if cap.isOpened():
                 ret,self.frame = cap.read()
             else: 
@@ -40,8 +33,3 @@ class ImageProcessing(object):
                     cap.release()
         except:
             print("Error in stream starting and processing")     
-
-        
-
-
-
