@@ -1,10 +1,10 @@
 from Image_Processsing import ImageProcessing
+from Logger.logger import ApplicationLogger
 import cv2
 import threading as MT
 import time
-
-
 #import tensorflow as tf
+
 try:
     #Loads in the saved model.
     #model = tf.keras.models.load_model("Main/128x3-cnn.model")
@@ -13,10 +13,12 @@ try:
     video1 = cv2.VideoCapture(0)
 
     #Creating Process instances of the image procassing class parsing the stream the video number and the model.
+    print(ApplicationLogger.logInfo())
     imageProcess = ImageProcessing(video1)
 
     #Creation of the threads for each stream with the target being the start sream method in the video processing class.
     print("Creating Threads")
+    
     t1 = MT.Thread(target=imageProcess.startStream)
     t1.start()
 

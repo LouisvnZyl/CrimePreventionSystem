@@ -3,7 +3,7 @@ import numpy as np
 import time
 import os
 import threading as MT
-import Logger.logger as AppLogger
+from Logger.logger import ApplicationLogger
 
 class ImageProcessing(object):
     
