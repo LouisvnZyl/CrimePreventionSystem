@@ -1,7 +1,7 @@
 import cv2
 from Image_Processsing import ImageProcessing
 import threading as MT
-from Logger import logger
+from FileLogger import logger 
 try:
     #Loads in the saved model.
     #model = tf.keras.models.load_model("Main/128x3-cnn.model")
