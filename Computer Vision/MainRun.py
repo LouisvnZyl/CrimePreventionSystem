@@ -1,19 +1,16 @@
-from Image_Processsing import ImageProcessing
-from Logger.logger import ApplicationLogger
 import cv2
+from Image_Processsing import ImageProcessing
 import threading as MT
-import time
-#import tensorflow as tf
-
+from Logger import logger
 try:
     #Loads in the saved model.
     #model = tf.keras.models.load_model("Main/128x3-cnn.model")
     #Creates the diffirent video stream. In this case we duplicated the first one to simulate 3 cameras.
     # Video 1 and 2 will be the frontal cameras and video 3 the bottom one.
+    print('Starting Application')
     video1 = cv2.VideoCapture(0)
 
     #Creating Process instances of the image procassing class parsing the stream the video number and the model.
-    print(ApplicationLogger.logInfo())
     imageProcess = ImageProcessing(video1)
 
     #Creation of the threads for each stream with the target being the start sream method in the video processing class.

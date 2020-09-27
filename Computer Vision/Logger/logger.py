@@ -1,8 +1,5 @@
 class ApplicationLogger(object):
 
-    def __init__(self):
-        self.text = text
-
     def logInfo(self):
         print('Log Info')
 

@@ -1,9 +1,10 @@
+from Logger.logger import ApplicationLogger
 import cv2
 import numpy as np
 import time
 import os
 import threading as MT
-from Logger.logger import ApplicationLogger
+
 
 class ImageProcessing(object):
     
@@ -18,7 +19,6 @@ class ImageProcessing(object):
     def startStream(self):
         try:
             cap = self.video
-            AppLogger.ApplicationLogger.logInfo()
             if cap.isOpened():
                 ret,self.frame = cap.read()
             else: 
