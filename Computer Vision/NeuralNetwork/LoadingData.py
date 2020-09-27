@@ -65,10 +65,11 @@ X = np.array(X).reshape(-1,IMG_SIZE,IMG_SIZE,1)
 y=np.array(y)
 
 #Pickles (saves) the data in the directory specified.
-pickle_out = open("X.pickleRGB","wb")
+pickle_out = open("StoredSet/X.pickleRGB","wb")
 pickle.dump(X,pickle_out)
 pickle_out.close()
 
-pickle_out = open("y.pickleRGB","wb")
+pickle_out = open("StoredSet/y.pickleRGB","wb")
 pickle.dump(y,pickle_out)
 pickle_out.close()
+print('Data Loaded and Stored')
