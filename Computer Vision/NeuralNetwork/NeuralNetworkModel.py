@@ -25,8 +25,8 @@ class ReluDropoutRGB(object):
         self.X=X
         self.y=y
         self.model=model
-        self.conv=1
-        self.size=32
+        self.conv=2
+        self.size=64
         self.dense = 0
 #Defining the model method th use the variables in set object to perform the defined model
     def Model(self):
@@ -60,11 +60,11 @@ class ReluDropoutRGB(object):
                     self.model.add(Activation("softmax"))
                     #The compile function of the model will start the model and use a sparse categorcal crossentropy method to get the loss
                     #It will use the adam optimizer and show our metrics as the accuracy
-                    self.model.compile(loss="binary_crossentropy",optimizer="adam",metrics=['accuracy'])
+                    self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
                     #Now we will fit the model using the images found in x and categorizing it in y using 32 images at a time, having 10 iterations.
                     #It will use 10% of the data to validate the trained model and use the tensorboard callback.
-                    self.model.fit(self.X,self.y,batch_size=32,epochs=10,validation_split=0.1)
-        self.model.save("StoredModels/128x3-cnn.model")
+                    self.model.fit(self.X,self.y,batch_size=10,epochs=5,validation_split=0.1)
+        self.model.save("StoredModels/64x2-10-Epochs-cnn.model")
     #def useModel(self):
 #creates an instance of the model class with the images, classes and the model base as parameters
 modelRun = ReluDropoutRGB(X,y,newMod)

@@ -16,7 +16,7 @@ DATADIR = "D:/Honours Project/CrimePreventionSystem/Computer Vision/NeuralNetwor
 CATEGORIES = []
 #or use a loop to create them for you.
 #Feel free to change this part to suit your needs
-CATEGORIES = ["Gun"]
+CATEGORIES = ["Gun", "Hand"]
     
 #Defines a fixed size of the image so that it is easy to work with     
 IMG_SIZE = 100
