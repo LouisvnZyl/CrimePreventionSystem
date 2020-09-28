@@ -16,10 +16,10 @@ DATADIR = "D:/Honours Project/CrimePreventionSystem/Computer Vision/NeuralNetwor
 CATEGORIES = []
 #or use a loop to create them for you.
 #Feel free to change this part to suit your needs
-CATEGORIES = ["Gun"]
+CATEGORIES = ["Gun", "Hand"]
     
 #Defines a fixed size of the image so that it is easy to work with     
-IMG_SIZE = 100
+IMG_SIZE = 500
 training_data = []
 
 #method that will create the data and use the categories to find the directories of the categories in the dataset and read them
@@ -65,11 +65,11 @@ X = np.array(X).reshape(-1,IMG_SIZE,IMG_SIZE,1)
 y=np.array(y)
 
 #Pickles (saves) the data in the directory specified.
-pickle_out = open("StoredSet/X.pickleRGB","wb")
+pickle_out = open("X.pickle","wb")
 pickle.dump(X,pickle_out)
 pickle_out.close()
 
-pickle_out = open("StoredSet/y.pickleRGB","wb")
+pickle_out = open("y.pickle","wb")
 pickle.dump(y,pickle_out)
 pickle_out.close()
 print('Data Loaded and Stored')
