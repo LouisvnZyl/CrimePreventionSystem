@@ -15,8 +15,8 @@ import time
 #Uses a secuential model
 newMod = Sequential()
 #Loads in the saved data 
-X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X.pickleRGB","rb"))
-y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y.pickleRGB","rb"))
+X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X.pickle","rb"))
+y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y.pickle","rb"))
 
 class ReluDropoutRGB(object):
 #Creation of the constreuctor to gather the variables needed
@@ -26,7 +26,7 @@ class ReluDropoutRGB(object):
         self.y=y
         self.model=model
         self.conv=2
-        self.size=64
+        self.size=32
         self.dense = 0
 #Defining the model method th use the variables in set object to perform the defined model
     def Model(self):
@@ -63,8 +63,8 @@ class ReluDropoutRGB(object):
                     self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
                     #Now we will fit the model using the images found in x and categorizing it in y using 32 images at a time, having 10 iterations.
                     #It will use 10% of the data to validate the trained model and use the tensorboard callback.
-                    self.model.fit(self.X,self.y,batch_size=10,epochs=5,validation_split=0.1)
-        self.model.save("StoredModels/64x2-10-Epochs-cnn.model")
+                    self.model.fit(self.X,self.y,batch_size=10,epochs=3,validation_split=0.1)
+        self.model.save("32x2-10-Epochs-cnn.model")
     #def useModel(self):
 #creates an instance of the model class with the images, classes and the model base as parameters
 modelRun = ReluDropoutRGB(X,y,newMod)

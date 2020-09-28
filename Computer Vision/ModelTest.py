@@ -2,7 +2,6 @@ import cv2
 import tensorflow as tf
 #These categories will be decided through the dataset.
 
-pickle_out = open("y.pickle","wb")
 categories = ["Gun","Hand"]
 
 class ObjectDetection(object):
@@ -16,7 +15,7 @@ class ObjectDetection(object):
         try:
             prep = Prepare(self.frame)    
             prediction = self.model.predict([prep.prepare_img()])
-            return prediction[0]
+            return categories[int(prediction[0][0])]
         except:
             return("Error in prediction !")
         
@@ -27,10 +26,8 @@ class Prepare(object):
 
     def prepare_img(self):
         try:
-            IMG_SIZE = 100
-            img_arr = cv2.imread(self.frame,cv2.IMREAD_GREYSCALE)
-            img_arr = img_arr/255
-            new_arr = cv2.resize(img_arr,(IMG_SIZE,IMG_SIZE))
-            return(new_arr)
+            IMG_SIZE = 500
+            new_arr = cv2.resize(self.frame,(IMG_SIZE,IMG_SIZE))
+            return new_arr.reshape(-1, IMG_SIZE,IMG_SIZE, 1)
         except:
-            return []
+            print('Error in image preparation')
