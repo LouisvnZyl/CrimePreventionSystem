@@ -6,7 +6,7 @@ import threading as MT
 import tensorflow as tf
 from ModelTest import ObjectDetection as od
 
-model = tf.keras.models.load_model("32x2-10-Epochs-cnn.model")
+model = tf.keras.models.load_model("BaseVGGNET.model")
 class ImageProcessing(object):
     
     #basic constructor for the Image Processing class taking the video stream the stream number

@@ -22,7 +22,7 @@ class ReluDropoutRGB(object):
         self.y=y
         self.model=model
         self.conv=2
-        self.size=32
+        self.size=64
         self.dense = 0
 #Defining the model method th use the variables in set object to perform the defined model
     def Model(self):
@@ -59,8 +59,8 @@ class ReluDropoutRGB(object):
                     self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
                     #Now we will fit the model using the images found in x and categorizing it in y using 32 images at a time, having 10 iterations.
                     #It will use 10% of the data to validate the trained model and use the tensorboard callback.
-                    self.model.fit(self.X,self.y,batch_size=50,epochs=3,validation_split=0.1)
-        self.model.save("32x2-10-Epochs-cnn.model")
+                    self.model.fit(self.X,self.y,batch_size=25,epochs=5,validation_split=0.1)
+        self.model.save("64x2-10-Epochs-cnn.model")
     #def useModel(self):
 #creates an instance of the model class with the images, classes and the model base as parameters
 modelRun = ReluDropoutRGB(X,y,newMod)
