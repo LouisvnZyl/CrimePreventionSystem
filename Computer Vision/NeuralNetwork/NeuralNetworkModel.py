@@ -3,15 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import keras as keras
-import os
-import cv2
-import random
 import pickle
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import TensorBoard
-import time
 #Uses a secuential model
 newMod = Sequential()
 #Loads in the saved data 
@@ -63,7 +59,7 @@ class ReluDropoutRGB(object):
                     self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
                     #Now we will fit the model using the images found in x and categorizing it in y using 32 images at a time, having 10 iterations.
                     #It will use 10% of the data to validate the trained model and use the tensorboard callback.
-                    self.model.fit(self.X,self.y,batch_size=10,epochs=3,validation_split=0.1)
+                    self.model.fit(self.X,self.y,batch_size=50,epochs=3,validation_split=0.1)
         self.model.save("32x2-10-Epochs-cnn.model")
     #def useModel(self):
 #creates an instance of the model class with the images, classes and the model base as parameters

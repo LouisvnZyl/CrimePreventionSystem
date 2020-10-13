@@ -2,7 +2,7 @@ import cv2
 import tensorflow as tf
 #These categories will be decided through the dataset.
 
-categories = ["Gun","Hand"]
+categories = ["Cat","Dog"]
 
 class ObjectDetection(object):
     
@@ -26,7 +26,7 @@ class Prepare(object):
 
     def prepare_img(self):
         try:
-            IMG_SIZE = 500
+            IMG_SIZE = 300
             new_arr = cv2.resize(self.frame,(IMG_SIZE,IMG_SIZE))
             return new_arr.reshape(-1, IMG_SIZE,IMG_SIZE, 1)
         except:

@@ -16,10 +16,10 @@ DATADIR = "D:/Honours Project/CrimePreventionSystem/Computer Vision/NeuralNetwor
 CATEGORIES = []
 #or use a loop to create them for you.
 #Feel free to change this part to suit your needs
-CATEGORIES = ["Gun", "Hand"]
+CATEGORIES = ["Cat", "Dog"]
     
 #Defines a fixed size of the image so that it is easy to work with     
-IMG_SIZE = 500
+IMG_SIZE = 300
 training_data = []
 
 #method that will create the data and use the categories to find the directories of the categories in the dataset and read them
@@ -38,7 +38,7 @@ def create_training_data():
                 training_data.append([new_array, Class_num])
             except Exception as e:
                 pass
-        print('Done Processing')
+    print('Done Processing')
 
 #Calls the data reading method and saves it in a global array training_data
 create_training_data()
