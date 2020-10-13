@@ -35,7 +35,13 @@ class ReluDropoutRGB(object):
 
         self.model.add(Conv2D(64,(3,3)))
         self.model.add(Activation("relu"))
-        self.model.add(MaxPooling2D(pool_size=(2,2)))
+        self.model.add(MaxPooling2D(pool_size=(3,3)))
+
+        self.model.add(Conv2D(32,(3,3)))
+        self.model.add(Activation("relu"))
+        self.model.add(MaxPooling2D(pool_size=(5,5)))
+
+        self.model.add(Dropout(0.25))
 
         self.model.add(Flatten())
         self.model.add(Dense(64))
@@ -43,8 +49,8 @@ class ReluDropoutRGB(object):
      
         self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
      
-        self.model.fit(self.X,self.y,batch_size=50,epochs=5,validation_split=0.1)
-        self.model.save("BaseVGGNET-cnn.model")
+        self.model.fit(self.X,self.y,batch_size=50,epochs=4,validation_split=0.1)
+        self.model.save("BaseVGGNET-4-Epochs-cnn.model")
 
 modelRun = ReluDropoutRGB(X,y,newMod)
 #Runs the model method to train and save the model from the dataset
