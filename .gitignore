@@ -2,6 +2,7 @@ Dataset
 X.*
 y.*
 *.model
+*.pickle
 
 .vscode/*
 !.vscode/settings.json
