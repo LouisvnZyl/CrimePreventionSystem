@@ -11,8 +11,12 @@ from keras.callbacks import TensorBoard
 #Uses a secuential model
 newMod = Sequential()
 #Loads in the saved data 
-X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X.pickle","rb"))
-y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y.pickle","rb"))
+#x1 - Gun - Hand
+#x2 - Gun
+#x3 - Cat - Dog
+#x3 - GunBase
+X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X3.pickle","rb"))
+y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y3.pickle","rb"))
 NAME = "Gun-Detection-cnn-32x1-5-EPOCH"
 
 
@@ -31,27 +35,25 @@ class ReluDropoutRGB(object):
         
 #Uses set variables to create the loop for executinmg diffirent varibales in a array on the set model.
 
-        self.model.add(Conv2D(32,(3,3),input_shape=self.X.shape[1:]))
+        self.model.add(Conv2D(64,(3,3),input_shape=self.X.shape[1:]))
         self.model.add(Activation("relu"))
         self.model.add(MaxPooling2D(pool_size=(2,2)))
 
-        for l in range(1):
-        
-            for l in range(1):
-                self.model.add(Conv2D(32,(3,3)))
-                self.model.add(Activation("relu"))
-                self.model.add(MaxPooling2D(pool_size=(1,1)))
+        self.model.add(Conv2D(64,(3,3),input_shape=self.X.shape[1:]))
+        self.model.add(Activation("relu"))
+        self.model.add(MaxPooling2D(pool_size=(2,2)))
 
-            self.model.add(Dense(2))
-            self.model.add(Activation("relu"))
-            self.model.add(Dropout(0.25))
-            self.model.add(Flatten())
-            self.model.add(Dense(2))
-            self.model.add(Activation("softmax"))
+        self.model.add(Dropout(0.25))
+
+        self.model.add(Flatten())  
+        self.model.add(Dense(64))
+        self.model.add(Activation("relu"))
+
+        self.model.add(Activation("softmax"))
         
-            self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
+        self.model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=['accuracy'])
         
-            self.model.fit(self.X,self.y,batch_size=25,epochs=20,validation_split=0.1)
+        self.model.fit(self.X,self.y,batch_size=25,epochs=5 ,validation_split=0.1)
         self.model.save(NAME)
 
 modelRun = ReluDropoutRGB(X,y,newMod)

@@ -11,8 +11,8 @@ from keras.callbacks import TensorBoard
 #Uses a secuential model
 newMod = Sequential()
 #Loads in the saved data 
-X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X.pickle","rb"))
-y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y.pickle","rb"))
+X= pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\X3.pickle","rb"))
+y=pickle.load(open("D:\Honours Project\CrimePreventionSystem\Computer Vision\StoredSet\y3.pickle","rb"))
 
 class ReluDropoutRGB(object):
 #Creation of the constreuctor to gather the variables needed
@@ -21,7 +21,7 @@ class ReluDropoutRGB(object):
         self.X=X
         self.y=y
         self.model=model
-        self.conv=2
+        self.conv=5
         self.size=64
         self.dense = 0
 #Defining the model method th use the variables in set object to perform the defined model
